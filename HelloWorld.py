@@ -1,12 +1,12 @@
 
-# coding: utf-8
+from flask import Flask
 
-# In[1]:
+app = Flask(__name__)
 
-print('Hello World!')
+@app.route("/")
+def hello():
+    return "Hello!! World :)"
 
-
-# In[ ]:
-
-
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')
 

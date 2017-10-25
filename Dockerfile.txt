@@ -1,0 +1,14 @@
+FROM python:2.7-onbuild
+
+MAINTAINER isiddhesh45@gmail.com
+
+RUN yum update -y
+RUN yum install -y python-pip python-dev
+RUN pip install --upgrade pip
+ADD HelloWorld.py /HelloWorld.py
+ADD requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
+
+
+
+CMD [ "python", "./HelloWorld.py" ]
