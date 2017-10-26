@@ -1,3 +1,5 @@
+#!groovy
+
 node {
     checkout scm
 	([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-global', url: 'https://github.com/siddheshsalunke/HelloWorld.git']]])
