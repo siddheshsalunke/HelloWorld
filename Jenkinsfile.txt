@@ -1,0 +1,23 @@
+node {
+    checkout scm
+	([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-global', url: 'https://github.com/siddheshsalunke/HelloWorld.git']]])
+    
+}
+
+node("Amazon ECR") {
+    docker.withRegistry('<<498624257380.dkr.ecr.us-east-1.amazonaws.com/hello_world>>', '<<AWS-ECR-Credentials>>') {
+    
+        git url: "<<https://github.com/siddheshsalunke/HelloWorld.git>>", credentialsId: '<<git-global>>'
+    
+        sh "git rev-parse HEAD > .git/commit-id"
+        def commit_id = readFile('.git/commit-id').trim()
+        println commit_id
+    
+        stage "build"
+        def app = docker.build ""
+    
+        stage "publish"
+        app.push 'latest'
+        app.push "${commit_id}"
+    }
+}
