@@ -1,4 +1,6 @@
 # HELLO WORLD! :)
-#Jenkins Implementation of Python Application via Github and deploying to Containers;
+#Jenkins Implementation of Python Application via Github and deploying to Containers
+
 Also #Pipeline.jpg for Architecture of Pipeline
-;application commits are for testing pipeline
+
+application commits are for testing pipeline
